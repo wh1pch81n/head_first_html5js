@@ -4,10 +4,13 @@
 		<meta charset="utf-8">
 			<title>Planets</title>
 			<script>
-				var planet = document.getElementById("greenPlanet");
-				planet.innerHTML = "Red Alert: hit by phaser fire!";
-				</script>
-	</head>
+				function init() {
+					var planet = document.getElementById("greenPlanet");
+					planet.innerHTML = "Red Alert: hit by phaser fire!";
+				}
+			window.onload = init;
+			</script>
+			</head>
 	<body>
 		<h1>Green Planet</h1>
 		<p id="greenPlanet">All is well</p>
