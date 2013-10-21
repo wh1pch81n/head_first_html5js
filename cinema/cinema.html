@@ -14,8 +14,19 @@
 				title: "Plan 9 from Outer Space",
 				genre: "Cult Classic",
 				rating: 5,
-				showtimes: ["3:00pm",
-							"7:00pm"]
+				showtimes: ["3:00pm", "7:00pm"],
+				
+				function getNextShowing () {
+					var now = new Date().getTime();
+					for (var i = 0; i < this.showtimes.length; i++) {
+						var showtime = getTimeFromString(this.showtimes[i]);
+						if((showtime - now) > 0) {
+							
+							return "Next showing of " + this.title + " is " + this.showtimes[i];
+						}
+					}
+					return null;
+				}
 			};
 			
 			var movie2 = {
@@ -27,17 +38,7 @@
 							"11:00pm"]
 			};
 			
-			function getNextShowing (movie) {
-				var now = new Date().getTime();
-				for (var i = 0; i < movie.showtimes.length; i++) {
-					var showtime = getTimeFromString(movie.showtimes[i]);
-					if((showtime - now) > 0) {
-						
-						return "Next showing of " + movie.title + " is " + movie.showtimes[i];
-					}
-				}
-				return null;
-			}
+			
 			
 			function getTimeFromString(timeString) {
 				var theTime = new Date ();
