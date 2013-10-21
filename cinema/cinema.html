@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-			<title>Making Fido as an object</title>
+			<title>Lets go to the movies</title>
 			<script>
 				window.onload = function() {
-					alert("you rule");
-					for (prop in movie1) {
-						alert(prop + " " + movie1[prop]);
-					}
+					alert("you are awesome");
+					alert(getNextShowing(movie1));
+					
+					alert(getNextShowing(movie2));
 				}
 			var movie1 = {
 				title: "Plan 9 from Outer Space",
@@ -26,7 +26,28 @@
 							"9:00pm",
 							"11:00pm"]
 			};
-
+			
+			function getNextShowing (movie) {
+				var now = new Date().getTime();
+				for (var i = 0; i < movie.showtimes.length; i++) {
+					var showtime = getTimeFromString(movie.showtimes[i]);
+					if((showtime - now) > 0) {
+						
+						return "Next showing of " + movie.title + " is " + movie.showtimes[i];
+					}
+				}
+				return null;
+			}
+			
+			function getTimeFromString(timeString) {
+				var theTime = new Date ();
+				var time = timeString.match(/(\d+)(?::(\d\d))?\s*(p?)/);
+				theTime.setHours( parseInt(time[1]) + (time[3] ? 12 : 0));
+				theTime.setMinutes( parseInt(time[2]) || 0);
+				return theTime.getTime();
+			}
+			
+			
 				</script>
 			</head>
 	<body>
