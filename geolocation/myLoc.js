@@ -1,3 +1,9 @@
+var map = null; //declaring global variable that will hold the map object after we create it.
+var ourCoords = {
+latitude: 47.624851,
+longitude: -122.52099
+};
+
 window.onload = getMyLocation;
 
 function getMyLocation() {
@@ -24,6 +30,22 @@ function displayLocation(position) {
 	var km = computeDistance( position.coords, ourCoords);
 	var distance = document.getElementById("distance");
 	distance.innerHTML = "You are " + km + " km from the Wickedly smart HQ";
+	
+	
+	showMap(position.coords); //this isn't working.  maybe it has to be run server instead of a desktop.
+	
+}
+
+
+function showMap(coords) {
+	var googleLatAndLong = new google.maps.LatLng( coords.latitude, coords.longitude); //constructing a new lat long obj
+	var mapOptions = {
+	zoom: 10, //zoom level [0, 21]
+	center: googleLatAndLong,
+	mapTypeId: google.maps.MapTypeId.ROADMAP // you could try SATELLITE or HYBRID too!
+	};
+	var mapDiv = document.getElementById("map");
+	map = new google.maps.Map(mapDiv, mapOptions); //uses mapDiv Ref to know where to display map with options
 }
 
 function displayError(error) {
@@ -73,7 +95,7 @@ function degreesToRadians(degrees) {
 	return (degrees * Math.PI)/ 180;
 }
 
-var ourCoords = {
-latitude: 47.624851,
-longitude: -122.52099
-}
+
+
+
+
