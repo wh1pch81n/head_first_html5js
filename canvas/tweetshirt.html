@@ -3,10 +3,80 @@
 	<head>
 		<title>Look what I Drew!</title>
 		<meta charset="utf-8">
+			<style>
+				canvas {
+					border: thin solid black;
+				}
+			
+			form {
+				display:table;
+				padding: 10px;
+			}
+			
+			div.tableRow {
+				display: table-row;
+			}
+			
+			div.tableRow > p,
+			div.tableRow > label,
+			div.tableRow > input {
+				display: table-cell;
+				vertical-align: top;
+				padding: 3px;
+			}
+			
+			div.tableRow label {
+				text-align: right;
+			}
+			
+				</style>
 			</head>
 	<body>
 		
-		<canvas id="lookWhatIDrew" width="600" height="200"></canvas>
-		
+		<canvas id="lookWhatIDrew" width="600" height="200">
+		Your browser does not support canvas
+		</canvas>
+		<form>
+			<fieldset>
+				<legend>Customize your shirt</legend>
+				<div class="tableRow">
+					<label for="bgColor">Select background color: </label>
+					<select id="bgColor" name="bgColor">
+						<option value="white">white</option>
+						<option value="black">black</option>
+						<option value="red">red</option>
+						<option value="green">green</option>
+						<option calue="blue">blue</option>
+					</select>
+				</div>
+				<div class="tableRow">
+					<label for="circleOrSquares"> Circles or Squares:</label>
+					<select id="circleOrSquares" name="circleOrSquares">
+						<option value="circle">circle</option>
+						<option value="square">square</option>
+					</select>
+				</div>
+				<div class="tableRow">
+					<label for="textColor">Text Color:</label>
+					<select id="textColor" name="textColor">
+						<option value="white">white</option>
+						<option value="black">black</option>
+						<option value="red">red</option>
+						<option value="green">green</option>
+						<option calue="blue">blue</option>
+					</select>
+				</div>
+				<div class="tableRow">
+					<label for="pickATweet">Pick a tweet:</label>
+					<select id="pickATweet" name="pickATweet">
+						<option value="1">@starbuzz you'r on a #shirt #tweetshirt</option>
+					</select>
+				</div>
+				<div class="tableRow">
+					<input type="button" value="Preview"></input>
+					<input type="button" value="Buy"></input>
+				</div>
+			</fieldset>
+		</form>
 	</body>
 </html>
