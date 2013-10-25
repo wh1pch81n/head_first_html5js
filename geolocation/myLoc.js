@@ -46,6 +46,14 @@ function showMap(coords) {
 	};
 	var mapDiv = document.getElementById("map");
 	map = new google.maps.Map(mapDiv, mapOptions); //uses mapDiv Ref to know where to display map with options
+	
+	var title = "your location";
+	var content = "you are here: "
+	+ coords.latitude
+	+ ", "
+	+ coords.longitude;
+	
+	addMarker(map, googleLatAndLong, title, content);
 }
 
 function displayError(error) {
@@ -95,7 +103,29 @@ function degreesToRadians(degrees) {
 	return (degrees * Math.PI)/ 180;
 }
 
+//so you wanna pin a location...
+function addMarker (map, latlong, title, content) {
+	//1 create the marker
+	var markerOptions = {
+	position: latlong,
+	map: map,
+	title: title,
+	clickable:true
+	}
+	var marker = new google.maps.Marker(markerOptions);
 
-
+	//2 create info window
+	var infoWindowOptions = {
+	content: content,
+	position: latlong
+	};
+	
+	var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+	
+	google.maps.event.addListener(marker, "click", function() {
+								  infoWindow.open(map);
+								  });
+	
+}
 
 
