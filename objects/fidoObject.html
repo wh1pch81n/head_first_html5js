@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Making Fido as an object</title>
+			<script>
+				window.onload = function() {
+					alert("you rule");
+					
+					//you may access object properties with dot notation
+					if (fido.weight > 25) {
+						alert("WOOF");
+					} else {
+						alert("yip");
+					}
+				}
+				var fido = {
+					name: "Fido",
+					weight: 40,
+					breed: "Mixed",
+					loves: ["walks", "fetching the ball", "master"]
+					//objects can have methods
+					bark: function() {
+						alert("Woof woof!");
+					}
+				};
+
+
+			
+			//you may access object properties with [] notation. like an nsdictionary
+			var breed = fido["breed"];
+			if (breed == "mixed") {
+				alert("Best in show");
+			}
+			
+			//you may change a properties value
+			//fido["name"] = "rover";
+			fido.name = "rover";
+			alert(fido.name);
+			
+			fido.weight = 27;
+			fido.breed = "chawalla/great dane mix";
+			fido.loves.push("chewing bones");
+			
+			//enumberating all an objects properties
+			var prop;
+			for (prop in fido) {
+				alert("Fido has a " + prop + " property ");
+				if (prop == "name") {
+					alert("this is " + fido[prop]);
+				}
+			}
+			
+			//have fun with an object array
+			var likes = fido.loves;
+			var likesString = "Fido likes";
+			
+			for (var i = 0; i < likes.length; ++i) {
+				likesString += " " + likes[i];
+			}
+			alert(likesString);
+			
+			//you can pass an object to a function
+			function bark(dog) {
+				if (dog.weight > 25) {
+					alert("WOOF");
+				} else {
+					alert("yip");
+				}
+			}
+			
+			bark(fido);
+			</script>
+			</head>
+	<body>
+		
+	</body>
+</html>
