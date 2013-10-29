@@ -43,7 +43,7 @@
 				<div class="tableRow">
 					<label for="bgColor">Select background color: </label>
 					<select id="bgColor" name="bgColor">
-						<option value="white">white</option>
+						<option value="white" selected="selected">white</option>
 						<option value="black">black</option>
 						<option value="red">red</option>
 						<option value="green">green</option>
@@ -51,8 +51,9 @@
 					</select>
 				</div>
 				<div class="tableRow">
-					<label for="circleOrSquares"> Circles or Squares:</label>
-					<select id="circleOrSquares" name="circleOrSquares">
+					<label for="shape"> Circles or Squares:</label>
+					<select id="shape" name="shape">
+						<option value="none" selected="selected">None</option>
 						<option value="circle">circle</option>
 						<option value="square">square</option>
 					</select>
@@ -61,7 +62,7 @@
 					<label for="textColor">Text Color:</label>
 					<select id="textColor" name="textColor">
 						<option value="white">white</option>
-						<option value="black">black</option>
+						<option value="black" selected="selected">black</option>
 						<option value="red">red</option>
 						<option value="green">green</option>
 						<option calue="blue">blue</option>
@@ -74,8 +75,8 @@
 					</select>
 				</div>
 				<div class="tableRow">
-					<input type="button" value="Preview"></input>
-					<input type="button" value="Buy"></input>
+					<input type="button" id="previewButton" value="Preview"></input>
+					<input type="button" id="buyButton" value="Buy"></input>
 				</div>
 			</fieldset>
 		</form>

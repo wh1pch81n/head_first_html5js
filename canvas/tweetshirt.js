@@ -1,4 +1,7 @@
 window.onload = function() {
+	var previewButtom = document.getElementById("previewButton");
+	button.onclick = previewHandler;
+	
 	var canvas = document.getElementById("tShirtCanvas");
 	if (canvas.getContext == null) return;
 	var context = canvas.getContext("2d"); //you need a 2d context from canvas in order to draw
@@ -16,3 +19,18 @@ window.onload = function() {
 	
 	
 };
+
+function previewHandler() {
+	var canvas = document.getElementById("tShirtCanvas");
+	var context = canvas.getContext("2d");
+	
+	var selectObj = document.getElementById("shape");
+	var index = selectObj.selectedIndex;
+	var shape = selectedObj[index].value;
+	
+	if( shape == "squares") {
+		for (var squares = 0; squares < 20; squares++) {
+			drawSquare( canvas, context);
+		}
+	}
+}
