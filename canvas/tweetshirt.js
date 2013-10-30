@@ -24,6 +24,8 @@ function previewHandler() {
 	var canvas = document.getElementById("tShirtCanvas");
 	var context = canvas.getContext("2d");
 	
+	fillBackgroundColor(canvas, context);
+	
 	var selectObj = document.getElementById("shape");
 	var index = selectObj.selectedIndex;
 	var shape = selectObj[index].value;
@@ -41,10 +43,19 @@ function drawSquare( canvas, context) {
 	//calculate random x position for square
 	var x = Math.floor(Math.random() * canvas.width);
 	//calculate random width for square
-	var w = Math.floor(Math.random() * 20);
+	var w = Math.floor(Math.random() * 40);
 	//set the fillstyle to light blue
-	context.fillstyle = "lightblue";
+	context.fillStyle = "lightblue";
 	//draw a square at position x, y, with width w
 	context.fillRect(x, y, w, w);
 	
+}
+
+function fillBackgroundColor( canvas, context) {
+	var selectObj = document.getElementById("bgColor");
+	var index = selectObj.selectedIndex;
+	var bgColor = selectObj[index].value;
+	
+	context.fillStyle = bgColor;
+	context.fillRect(0,0,canvas.width, canvas.height);
 }
