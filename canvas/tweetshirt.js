@@ -34,7 +34,31 @@ function previewHandler() {
 		for (var squares = 0; squares < 20; squares++) {
 			drawSquare( canvas, context);
 		}
+	} else if (shape == "triangles") {
+		for (var t = 0; t < 20; t++) {
+			drawTriangle( canvas, context);
+		}
+	} else if ( shape == "circles") {
+		for (var c = 0; c < 20; c++) {
+			drawCircle( canvas, context);
+		}
 	}
+}
+
+function drawCircle( canvas, context) {
+	//trace the path of a circle
+	context.beginPath();
+	var x = randomValue(canvas.width);
+	var y = randomValue(canvas.height);
+	var radius = randomValue(20);
+	var startAngle = 0;
+	var endAngle = 2 * Math.PI;
+	var direction = true;//true means trace it in ccw; false means cw
+	context.arc(x, y, radius, startAngle, endAngle, direction);
+	context.closePath();
+	
+	context.fillStyle = "lightgreen";
+	context.fill();
 }
 
 function drawSquare( canvas, context) {
@@ -51,6 +75,33 @@ function drawSquare( canvas, context) {
 	
 }
 
+function drawTriangle( canvas, context) {
+	//trace an invisible triangle
+	context.beginPath();
+	//set invisible pencil to an initial posotion
+	var x =randomValue(canvas.width);
+	var y =randomValue(canvas.height);
+	context.moveTo(x, y);
+	//draw invisable lines
+	context.lineTo(x + (randomValue(40)-20), y + (randomValue(40)-20));
+	context.lineTo(x + (randomValue(40)-20), y + (randomValue(40)-20));
+	//draw line from current position to initial position
+	context.closePath();
+	
+	//now we want to make the line visible
+	//context.lineWidth = 5;
+	//context.stroke();
+	context.fillStyle = "red";
+	context.fill();
+}
+
+/**
+ returns a random Value between 0 and max
+ */
+function randomValue(max) {
+	return Math.floor(Math.random() * max);
+}
+
 function fillBackgroundColor( canvas, context) {
 	var selectObj = document.getElementById("bgColor");
 	var index = selectObj.selectedIndex;
@@ -58,4 +109,8 @@ function fillBackgroundColor( canvas, context) {
 	
 	context.fillStyle = bgColor;
 	context.fillRect(0,0,canvas.width, canvas.height);
+}
+
+function degreesToRandians(degrees) {
+	return (degrees * Math.PI)/180;
 }
