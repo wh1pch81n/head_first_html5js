@@ -29,18 +29,38 @@ function previewHandler() {
 	var selectObj = document.getElementById("shape");
 	var index = selectObj.selectedIndex;
 	var shape = selectObj[index].value;
+	var drawShape;
 	
 	for (var i = 0; i < 20; i++) {
 		if( shape == "squares") {
-			drawSquare( canvas, context);
+			drawShape = drawSquare;
 		} else if (shape == "triangles") {
-			drawTriangle( canvas, context);
+			drawShape = drawTriangle;
 		} else if ( shape == "circles") {
-			drawCircle( canvas, context);
+			drawShape = drawCircle;
 		} else if (shape == "smiles") {
-			drawSmiley( canvas, context);
+			drawShape = drawSmiley;
+		} else if (shape == "everything") {
+			var num = randomValue(4);
+			if ( num == 0) {
+				drawShape = drawSquare;
+			} else if (num == 1) {
+				drawShape =  drawTriangle;
+			} else if (num == 2) {
+				drawShape = drawCircle;
+			} else if (num == 3) {
+				drawShape = drawSmiley;
+			}
 		}
+		drawShape(canvas,context);
 	}
+	drawText(canvas,context);
+	var twitterBird = new Image();
+	twitterBird.src = "twitterBird.png";
+	//we use the onload handler to make the twitter bird appear after everything is parsed.
+	twitterBird.onload = function() {
+		context.drawImage(twitterBird, 20, 120, 70, 70);
+	};
 }
 
 function drawSmiley( canvas, context) {
@@ -56,19 +76,20 @@ function drawSmiley( canvas, context) {
 	context.closePath();
 	context.fillStyle = "yellow";
 	context.fill();
+	context.strokeStyle = "grey";
 	context.stroke();
 	//draw left eye
 	context.beginPath();
 	iradius = radius/4;
 	context.arc(x-iradius*1.5,y-iradius,iradius,startAngle,endAngle,direction);
 	context.closePath();
-	context.fillStyle = "black";
+	context.fillStyle = "grey";
 	context.fill();
 	//draw right eye
 	context.beginPath();
 	context.arc(x+iradius*1.5,y-iradius,iradius,startAngle,endAngle,direction);
 	context.closePath();
-	context.fillStyle = "black";
+	context.fillStyle = "grey";
 	context.fill();
 	//draw mouth
 	//it seems that the circle is upside down so you must give negative radians to have the values you expect based off the unit circle
@@ -163,4 +184,21 @@ function updateTweets(tweets) {
 		tweetSelection.options.add(option);
 	}
 	tweetSelection.selectedIndex = 0;
+}
+
+function drawText(canvas, context) {
+	var selectObj = document.getElementById("textColor");
+	context.fillStyle = selectObj[selectObj.selectedIndex].value;
+	context.font = "bold 1em sans-serif";
+	context.textAlign = "left";
+	context.fillText("I saw this Tweet", 20, 40);
+	
+	selectObj = document.getElementById("pickATweet");
+	context.font = "italic 1.2em serif";
+	context.fillText(selectObj[selectObj.selectedIndex].value, 30, 100);
+	
+	context.textAlign = "right";
+	context.font = "bold 1em sans-serif";
+	context.fillText("and all I got was this lousy t-shirt!", canvas.width-20, canvas.height-40);
+	
 }
