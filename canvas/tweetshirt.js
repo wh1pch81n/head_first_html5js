@@ -151,3 +151,16 @@ function fillBackgroundColor( canvas, context) {
 function degreesToRandians(degrees) {
 	return (degrees * Math.PI)/180;
 }
+
+function updateTweets(tweets) {
+	var tweetSelection = document.getElementById("pickATweet");
+	for (var i = 0; i < tweets.length; i++) {
+		tweet = tweets[i];
+		var option = document.createElement("option");
+		option.text = tweet.text;
+		option.value = tweet.text.replace("\"", "'");
+		
+		tweetSelection.options.add(option);
+	}
+	tweetSelection.selectedIndex = 0;
+}
