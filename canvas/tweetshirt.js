@@ -30,19 +30,56 @@ function previewHandler() {
 	var index = selectObj.selectedIndex;
 	var shape = selectObj[index].value;
 	
-	if( shape == "squares") {
-		for (var squares = 0; squares < 20; squares++) {
+	for (var i = 0; i < 20; i++) {
+		if( shape == "squares") {
 			drawSquare( canvas, context);
-		}
-	} else if (shape == "triangles") {
-		for (var t = 0; t < 20; t++) {
+		} else if (shape == "triangles") {
 			drawTriangle( canvas, context);
-		}
-	} else if ( shape == "circles") {
-		for (var c = 0; c < 20; c++) {
+		} else if ( shape == "circles") {
 			drawCircle( canvas, context);
+		} else if (shape == "smiles") {
+			drawSmiley( canvas, context);
 		}
 	}
+}
+
+function drawSmiley( canvas, context) {
+	var x,y,radius,startAngle,endAngle,direction;
+	x = randomValue( canvas.width);
+	y = randomValue( canvas.height);
+	radius = randomValue( 10)+10;
+	startAngle = 0;
+	endAngle = Math.PI * 2;
+	//draw face
+	context.beginPath();
+	context.arc(x,y,radius,startAngle,endAngle,direction);
+	context.closePath();
+	context.fillStyle = "yellow";
+	context.fill();
+	context.stroke();
+	//draw left eye
+	context.beginPath();
+	iradius = radius/4;
+	context.arc(x-iradius*1.5,y-iradius,iradius,startAngle,endAngle,direction);
+	context.closePath();
+	context.fillStyle = "black";
+	context.fill();
+	//draw right eye
+	context.beginPath();
+	context.arc(x+iradius*1.5,y-iradius,iradius,startAngle,endAngle,direction);
+	context.closePath();
+	context.fillStyle = "black";
+	context.fill();
+	//draw mouth
+	//it seems that the circle is upside down so you must give negative radians to have the values you expect based off the unit circle
+	startAngle = -(Math.PI)* ( 5.0/4.0);
+	endAngle = -(Math.PI)* (7.0/4.0);
+	direction = true;
+	context.beginPath();
+	context.arc(x,y-iradius,radius,startAngle,endAngle,direction);
+	
+	//context.lineWidth = 5;
+	context.stroke();
 }
 
 function drawCircle( canvas, context) {
