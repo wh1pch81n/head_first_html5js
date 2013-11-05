@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Look what I Drew!</title>
+		<meta charset="utf-8">
+			<script src="tweetshirt.js"></script>
+			<style>
+				canvas {
+					border: thin solid black;
+				}
+			
+			form {
+				display:table;
+				padding: 10px;
+			}
+			
+			div.tableRow {
+				display: table-row;
+			}
+			
+			div.tableRow > p,
+			div.tableRow > label,
+			div.tableRow > input {
+				display: table-cell;
+				vertical-align: top;
+				padding: 3px;
+			}
+			
+			div.tableRow label {
+				text-align: right;
+			}
+			
+				</style>
+			</head>
+	<body>
+		
+		<canvas id="tShirtCanvas" width="600" height="200">
+			Your browser does not support canvas
+		</canvas>
+		<form>
+			<fieldset>
+				<legend>Customize your shirt</legend>
+				<div class="tableRow">
+					<label for="bgColor">Select background color: </label>
+					<select id="bgColor" name="bgColor">
+						<option value="white" selected="selected">white</option>
+						<option value="black">black</option>
+						<option value="red">red</option>
+						<option value="green">green</option>
+						<option calue="blue">blue</option>
+					</select>
+				</div>
+				<div class="tableRow">
+					<label for="shape"> Circles or Squares:</label>
+					<select id="shape" name="shape">
+						<option value="none" selected="selected">None</option>
+						<option value="smiles">Smiley Faces</option>
+						<option value="circles">circle</option>
+						<option value="squares">square</option>
+						<option value="triangles">triangle</option>
+						<option value="everything">everything</option>
+					</select>
+				</div>
+				<div class="tableRow">
+					<label for="textColor">Text Color:</label>
+					<select id="textColor" name="textColor">
+						<option value="white">white</option>
+						<option value="black" selected="selected">black</option>
+						<option value="red">red</option>
+						<option value="green">green</option>
+						<option calue="blue">blue</option>
+					</select>
+				</div>
+				<div class="tableRow">
+					<label for="pickATweet">Pick a tweet:</label>
+					<select id="pickATweet" name="pickATweet">
+						
+					</select>
+				</div>
+				<div class="tableRow">
+					<input type="button" id="previewButton" value="Preview"></input>
+					<input type="button" id="buyButton" value="Buy"></input>
+				</div>
+			</fieldset>
+		</form>
+		<script src="http://tweetshirt.wickedlysmart.com/?callback=updateTweets">
+			</script>
+	</body>
+</html>
